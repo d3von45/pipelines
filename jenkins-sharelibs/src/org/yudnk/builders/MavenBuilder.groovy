@@ -22,7 +22,20 @@ class MavenBuilder implements Builder, Serializable {
     }
 
     @Override
+    void test(Object script, Map config) {
+        script.echo "Running Maven tests..."
+        
+        def testGoal = config.testGoal ?: 'test'
+        def profiles = config.profiles ? "-P${config.profiles.join(',')}" : ''
+        
+        script.sh "mvn ${testGoal} ${profiles}"
+        
+        // Publish test results
+        script.junit '**/target/surefire-reports/*.xml'
+    }
+    
+    @Override
     String getToolName() {
-        return 'maven'
+        return 'Maven'
     }
 }
