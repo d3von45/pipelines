@@ -2,7 +2,7 @@ package org.yudnk.builders
 
 class MavenBuilder implements Builder, Serializable {
 
-    @Overide
+    @Override
     def build(script, Map config){
         script.echo "Build with maven...."
 
