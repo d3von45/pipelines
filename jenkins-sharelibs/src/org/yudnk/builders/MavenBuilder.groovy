@@ -18,7 +18,6 @@ class MavenBuilder implements Builder, Serializable {
 
     Map results = [
         success: true,
-        artifacts: this.getArtifacts(script, config)
         tool: 'maven'
     ]
 
