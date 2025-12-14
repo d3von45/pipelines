@@ -14,12 +14,10 @@ class MavenBuilder implements Builder, Serializable {
             mvn ${goals} ${profiles} ${additionalArgs} \
                 -DskipTests=${config.skipTests ?: false}
         """
+
+        return [
+            success: true,
+            tool: 'maven'
+        ]
     }
-
-    Map results = [
-        success: true,
-        tool: 'maven'
-    ]
-
-    return results
 }
