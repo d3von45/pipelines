@@ -17,7 +17,12 @@ class MavenBuilder implements Builder, Serializable {
 
         return [
             success: true,
-            tool: 'maven'
+            tool: this.getToolName()
         ]
+    }
+
+    @Override
+    String getToolName() {
+        return 'maven'
     }
 }
