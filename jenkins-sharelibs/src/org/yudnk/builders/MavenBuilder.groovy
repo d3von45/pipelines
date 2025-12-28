@@ -11,16 +11,20 @@ class MavenBuilder implements Builder, Serializable {
         def additionalArgs = config.additionalArgs?: ''
 
         if (config.folder){
+            script.echo "Build in folder ${config.folder}"
             script.sh """
             mvn ${goals} ${profiles} ${additionalArgs} -f ${config.folder} \
                 -DskipTests=${config.skipTests ?: false}
         """
+        }else {
+            script.echo "Build in folder ."
+            script.sh """
+                mvn ${goals} ${profiles} ${additionalArgs} \
+                    -DskipTests=${config.skipTests ?: false}
+            """
         }
 
-        script.sh """
-            mvn ${goals} ${profiles} ${additionalArgs} \
-                -DskipTests=${config.skipTests ?: false}
-        """
+        
 
         return [
             success: true,
