@@ -38,4 +38,13 @@ class MavenBuilder implements Builder, Serializable {
     String getToolName() {
         return 'Maven'
     }
+
+    @Override
+    void folder(script, Map config){
+        if (config.srcFolder) {
+            script.echo "Move to source folder: ${config.srcFolder}"
+            script.sh "cd ${config.srcFolder}"
+        }
+        
+    }
 }
