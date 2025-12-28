@@ -44,4 +44,13 @@ class GradleBuilder implements Builder, Serializable {
         def artifactPattern = config.artifactPattern ?: '**/build/libs/*.jar'
         return script.findFiles(glob: artifactPattern) as List
     }
+
+    @Override
+    void folder(script, Map config){
+        if (config.srcFolder) {
+            script.echo "Move to source folder: ${config.srcFolder}"
+            script.sh "cd ${config.srcFolder}"
+        }
+        
+    }
 }

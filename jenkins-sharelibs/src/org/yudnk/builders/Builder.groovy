@@ -9,12 +9,4 @@ interface Builder {
     String getToolName()
 
     void folder(script, Map config)
-
-    void folder(script, Map config){
-        if (config.srcFolder) {
-            script.echo "Move to source folder: ${config.srcFolder}"
-            script.sh "cd ${config.srcFolder}"
-        }
-        
-    }
 }
