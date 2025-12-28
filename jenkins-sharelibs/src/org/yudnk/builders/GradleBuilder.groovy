@@ -45,12 +45,4 @@ class GradleBuilder implements Builder, Serializable {
         return script.findFiles(glob: artifactPattern) as List
     }
 
-    @Override
-    void folder(script, Map config){
-        if (config.srcFolder) {
-            script.echo "Move to source folder: ${config.srcFolder}"
-            script.sh "cd ${config.srcFolder}"
-        }
-        
-    }
 }

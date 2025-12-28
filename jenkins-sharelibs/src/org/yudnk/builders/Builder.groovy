@@ -7,6 +7,4 @@ interface Builder {
     void test(script, Map config)
 
     String getToolName()
-
-    void folder(script, Map config)
 }
