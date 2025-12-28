@@ -10,6 +10,13 @@ class MavenBuilder implements Builder, Serializable {
         def profiles = config.profiles ? "-P${config.profiles.join(',')}" : ''
         def additionalArgs = config.additionalArgs?: ''
 
+        if (config.folder){
+            script.sh """
+            mvn ${goals} ${profiles} ${additionalArgs} -f ${config.folder} \
+                -DskipTests=${config.skipTests ?: false}
+        """
+        }
+
         script.sh """
             mvn ${goals} ${profiles} ${additionalArgs} \
                 -DskipTests=${config.skipTests ?: false}
