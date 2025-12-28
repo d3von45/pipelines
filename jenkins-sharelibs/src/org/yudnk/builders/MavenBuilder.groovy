@@ -24,11 +24,10 @@ class MavenBuilder implements Builder, Serializable {
             """
         }
 
-        
-
         return [
             success: true,
-            tool: this.getToolName()
+            tool: this.getToolName(),
+            artifacts: this.getArtifacts(script, config)
         ]
     }
 
@@ -48,5 +47,11 @@ class MavenBuilder implements Builder, Serializable {
     @Override
     String getToolName() {
         return 'Maven'
+    }
+
+    private List getArtifacts(Object script, Map config) {
+        def artifactPattern = config.artifactPattern ?: '**/target/*-SNAPSHOT.jar'
+        script.echo "Searching for artifacts with pattern: ${artifactPattern}"
+        return script.findFiles(glob: artifactPattern) as List
     }
 }
