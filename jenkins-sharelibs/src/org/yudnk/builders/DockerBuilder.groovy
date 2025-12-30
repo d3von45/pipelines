@@ -15,11 +15,9 @@ class DockerBuilder implements Builder, Serializable {
         script.echo "Building with Docker..."
 
         config = defaultConfig + config
-
-        def image
         
         if(config.imageName){
-            image = script.docker.build("users-api:${script.env.BUILD_NUMBER}", "-f ${config.dockerfile} ${config.context}")
+            script.sh "docker build users-api:${script.env.BUILD_NUMBER} -f ${config.dockerfile} ${config.context}"
         }
         
         Map result = [
