@@ -2,15 +2,16 @@ package org.yudnk.builders
 
 class DockerBuilder implements Builder, Serializable {
 
-    def defaultConfig = [
-        imageName = "",
-        context = ".",
-        dockerfile = "Dockerfile"
-        tags: []
-    ]
     
     @Override
     Map build(Object script, Map config) {
+
+        def defaultConfig = [
+            imageName = "",
+            context = ".",
+            dockerfile = "Dockerfile"
+            tags: []
+        ]
 
         script.echo "Building with Docker..."
 
