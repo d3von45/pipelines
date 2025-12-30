@@ -2,16 +2,15 @@ package org.yudnk.builders
 
 class DockerBuilder implements Builder, Serializable {
 
+    def defaultConfig = [
+            imageName: "",
+            context: ".",
+            dockerfile: "Dockerfile"
+            tags: []
+        ]
     
     @Override
     Map build(Object script, Map config) {
-
-        def defaultConfig = [
-            imageName = "",
-            context = ".",
-            dockerfile = "Dockerfile"
-            tags: []
-        ]
 
         script.echo "Building with Docker..."
 
@@ -21,11 +20,9 @@ class DockerBuilder implements Builder, Serializable {
 
         script.echo(config)
         
-        // if(config.imageName){
-        //     image = docker.build("users-api:${env.BUILD_NUMBER}", "-f ${config.dockerfile} ${config.context}")
-        // }
-
-        image = docker.build("users-api:${env.BUILD_NUMBER}", "-f ${config.dockerfile} ${config.context}")
+        if(config.imageName){
+            image = docker.build("users-api:${env.BUILD_NUMBER}", "-f ${config.dockerfile} ${config.context}")
+        }
 
         
         Map result = [
