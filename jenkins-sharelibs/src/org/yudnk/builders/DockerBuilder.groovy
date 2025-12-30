@@ -12,9 +12,9 @@ class DockerBuilder implements Builder, Serializable {
     @Override
     Map build(Object script, Map config) {
 
-        config = defaultConfig + config
-
         script.echo "Building with Docker..."
+
+        config = defaultConfig + config
 
         def image
 
