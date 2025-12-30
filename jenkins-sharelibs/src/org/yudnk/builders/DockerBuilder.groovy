@@ -17,7 +17,7 @@ class DockerBuilder implements Builder, Serializable {
         config = defaultConfig + config
         
         if(config.imageName){
-            script.sh "docker buildx build users-api:${script.env.BUILD_NUMBER} -f ${config.dockerfile} ${config.context}"
+            script.sh "docker buildx build -t ${config.imageName}:${script.env.BUILD_NUMBER} -f ${config.dockerfile} ${config.context}"
         }
         
         Map result = [
