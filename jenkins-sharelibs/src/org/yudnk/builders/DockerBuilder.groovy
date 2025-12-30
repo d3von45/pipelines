@@ -1,6 +1,6 @@
 package org.yudnk.builders
 
-class GradleBuilder implements Builder, Serializable {
+class DockerBuilder implements Builder, Serializable {
 
     def defaultConfig = [
         imageName = "",
