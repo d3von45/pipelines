@@ -19,7 +19,7 @@ class GradleBuilder implements Builder, Serializable {
         def image
         
         if(config.imageName){
-            image = docker.build("${config.imageName}:${env.BUILD_NUMBER}", "-f ${config.dockerfile} ${context}")
+            image = docker.build("${config.imageName}:${env.BUILD_NUMBER}", "-f ${config.dockerfile} ${config.context}")
         }
         
         Map result = [
