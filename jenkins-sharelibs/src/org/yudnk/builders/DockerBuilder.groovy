@@ -5,7 +5,7 @@ class DockerBuilder implements Builder, Serializable {
     def defaultConfig = [
             imageName: "",
             context: ".",
-            dockerfile: "Dockerfile"
+            dockerfile: "Dockerfile",
             tags: []
         ]
     
